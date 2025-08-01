@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA Systems | SafeGuard Fire Protection</title>
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --light-color: #f1faee;
+            --dark-color: #333;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .component-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .component-item {
+            margin-bottom: 10px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .cta {
+            background: var(--secondary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #c1272d;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #c1272d;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 85%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            margin: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .quote-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-label:hover {
+            background-color: rgba(230, 57, 70, 0.1);
+        }
+
+        /* Add this to your existing style section */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-notification i {
+            font-size: 20px;
+        }
+
+        .toast-notification.error {
+            background: #f44336;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Public Address Systems</h1>
+            <p>Advanced Emergency Communication Solutions for Life Safety</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content-section">
+            <h2>Our PA System Services</h2>
+            <p>We provide comprehensive PA system solutions designed specifically for emergency communications and life
+                safety applications.</p>
+
+            <img src="/images/pasystem.png"
+                alt="PA System Installation">
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-volume-up feature-icon"></i>
+                    <h3>Crystal Clear Audio</h3>
+                    <p>High-quality sound reproduction ensures clear and intelligible emergency announcements.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-battery-full feature-icon"></i>
+                    <h3>Backup Power</h3>
+                    <p>Integrated battery backup ensures system operation during power failures.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-network-wired feature-icon"></i>
+                    <h3>Zone Control</h3>
+                    <p>Independent zone control for targeted announcements and evacuation messages.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>System Components</h2>
+            <div class="component-list">
+                <div class="component-item">
+                    <h3>Control Panel</h3>
+                    <p>Central management interface for system operation</p>
+                </div>
+                <div class="component-item">
+                    <h3>Speakers</h3>
+                    <p>High-fidelity speakers for clear audio distribution</p>
+                </div>
+                <div class="component-item">
+                    <h3>Amplifiers</h3>
+                    <p>Powerful amplification for building-wide coverage</p>
+                </div>
+                <div class="component-item">
+                    <h3>Microphones</h3>
+                    <p>Emergency paging and announcement capabilities</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Need a PA System Installation?</h2>
+            <p>Contact us for a free consultation and quote</p>
+            <a href="#" class="btn">Get Quote</a>
+        </section>
+
+        <!-- Add Quote Modal -->
+        <div class="modal" id="quoteModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Request a PA System Quote</h2>
+                <form class="quote-form" id="quoteForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Services Required</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="services[]" value="pa_installation" checked>
+                                PA System Installation
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="services[]" value="pa_maintenance">
+                                PA System Maintenance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="services[]" value="pa_upgrade">
+                                System Upgrade
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="services[]" value="pa_testing">
+                                Testing & Certification
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Details</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Request</button>
+                </form>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </main>
+
+    <div class="toast-notification" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Quote submitted successfully!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('quoteModal');
+            const quoteButtons = document.querySelectorAll('.btn');
+            const closeModal = document.querySelector('.close-modal');
+            const quoteForm = document.getElementById('quoteForm');
+
+            // Open modal when clicking quote buttons
+            quoteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (button.textContent.toLowerCase().includes('quote')) {
+                        e.preventDefault();
+                        modal.classList.add('show');
+                    }
+                });
+            });
+
+            // Close modal when clicking X button
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            // Handle form submission
+            quoteForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const selectedServices = Array.from(document.querySelectorAll('input[name="services[]"]:checked'))
+                    .map(checkbox => checkbox.value);
+                
+                if (selectedServices.length === 0) {
+                    showToast('Please select at least one service', true);
+                    return;
+                }
+
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    services: selectedServices,
+                    message: document.getElementById('message').value
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/submit-quote', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        modal.classList.remove('show');
+                        quoteForm.reset();
+                        showToast('Quote request submitted successfully!');
+                    } else {
+                        throw new Error(data.error || 'Failed to submit quote');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast(error.message, true);
+                }
+            });
+        });
+
+        // Add this function to your script
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const icon = toast.querySelector('i');
+
+            // Update toast content
+            toastMessage.textContent = message;
+            
+            // Update toast style based on type
+            if (isError) {
+                toast.classList.add('error');
+                icon.className = 'fas fa-exclamation-circle';
+            } else {
+                toast.classList.remove('error');
+                icon.className = 'fas fa-check-circle';
+            }
+
+            // Show toast
+            toast.classList.add('show');
+
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SparkShield Fire Protection | Fire Safety Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro"></script>
+
+  <style>
+    :root {
+      --primary-color: #e63946;
+      --secondary-color: #1d3557;
+      --light-color: #f1faee;
+      --dark-color: #333;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 90px;
+      margin-right: 10px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text h1 {
+      font-size: 24px;
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    .logo-text span {
+      font-size: 14px;
+      color: var(--secondary-color);
+    }
+
+    .main-nav ul {
+      display: flex;
+    }
+
+    .main-nav ul li {
+      margin-left: 20px;
+    }
+
+    .main-nav ul li a {
+      color: var(--secondary-color);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .main-nav ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .phone {
+      margin-right: 20px;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #c1272d;
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 280px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        z-index: 101;
+        border-radius: 8px;
+        margin-top: 15px;
+        padding: 10px 0;
+        border: 1px solid rgba(0,0,0,0.08);
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .dropdown-content.show {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-content a {
+        color: var(--secondary-color);
+        padding: 12px 25px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .dropdown-content a:hover {
+        background-color: rgba(230, 57, 70, 0.1);
+        color: var(--primary-color);
+        padding-left: 30px;
+    }
+
+    .dropdown-content a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background-color: var(--primary-color);
+        transform: scaleY(0);
+        transition: transform 0.2s ease;
+    }
+
+    .dropdown-content a:hover::before {
+        transform: scaleY(1);
+    }
+
+    /* Add arrow indicator */
+    .dropdown > a::after {
+        content: '▼';
+        font-size: 8px;
+        margin-left: 6px;
+        display: inline-block;
+        vertical-align: middle;
+        transition: transform 0.2s ease;
+    }
+
+    .dropdown:hover > a::after {
+        transform: rotate(180deg);
+    }
+
+    /* Add arrow on top of dropdown */
+    .dropdown-content::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: 20px;
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        transform: rotate(45deg);
+        border-left: 1px solid rgba(0,0,0,0.08);
+        border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Hero Section */
+    .hero {
+    position: relative;
+    background: none;
+    overflow: hidden;
+    height: 600px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 90px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; /* Add this to ensure slides stay below content */
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .hero-content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 2; /* Add this to ensure content stays above slides */
+}
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 36px;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .service-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      width: 350px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-img {
+      height: 200px;
+      background-color: #ddd;
+      overflow: hidden;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .service-content {
+      padding: 20px;
+    }
+
+    .service-content h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--secondary-color);
+    }
+
+    .service-content p {
+      margin-bottom: 20px;
+    }
+
+    /* About Section */
+    .about {
+      padding: 80px 0;
+      background-color: #f5f5f5;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 36px;
+      color: var(--secondary-color);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .about-img {
+      flex: 1;
+      height: 600px; /* Increased from 400px */
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Add responsive adjustment for smaller screens */
+    @media (max-width: 768px) {
+        .about-img {
+            height: 400px;
+            margin-top: 20px;
+        }
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background-color: #f5f5f5;
+    }
+
+    .testimonials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: #ddd;
+    }
+
+    .author-info h4 {
+      margin-bottom: 5px;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: var(--primary-color);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-light {
+      background: #fff;
+      color: var(--primary-color);
+    }
+
+    .btn-light:hover {
+      background: #f1f1f1;
+    }
+   /* Add this new class to your CSS */
+.btn-large {
+    font-size: 18px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Optional: Add hover effect */
+.btn-large:hover {
+    background: #c1272d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+    /* Footer */
+    .footer {
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 60px 0 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #ddd;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #fff;
+    }
+
+    .contact-info-footer p {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+
+      .main-nav ul {
+        margin-top: 20px;
+      }
+
+      .contact-info {
+        margin-top: 20px;
+      }
+
+      .about-content {
+        flex-direction: column;
+      }
+
+      .about-img {
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+
+    /* Add this to your existing styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal.show {
+        display: flex;
+    }
+
+    .modal-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 85%;
+        position: relative;
+        animation: modalSlideIn 0.3s ease;
+        margin: 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+        color: var(--primary-color);
+    }
+
+    .quote-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: var(--secondary-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+    /* Add these styles in your <style> tag */
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        padding: 3px 5px;
+        transition: background-color 0.2s;
+        font-size: 14px;
+    }
+
+    .checkbox-label:hover {
+        background-color: rgba(230, 57, 70, 0.1);
+    }
+
+    .checkbox-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: var(--secondary-color);
+    }
+
+    /* Chatbot Styles */
+    .chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chatbot.expanded {
+    width: 300px;
+    height: 400px;
+    bottom: 90px;
+    right: 20px;
+    border-radius: 15px;
+    background: #fff;
+}
+
+.chatbot-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.chat-content {
+    display: none;
+    height: 100%;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 12px 15px;
+    background: linear-gradient(135deg, var(--secondary-color), #457b9d);
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.minimize-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.chat-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f8f9fa;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.message {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 85%;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.message.user {
+    background: #e3f2fd;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+    color: #1565c0;
+}
+
+.message.bot {
+    background: white;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+    color: #37474f;
+}
+
+.chat-input {
+    padding: 8px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 13px;
+    background: #f8f9fa;
+}
+
+.chat-input button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--secondary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .chatbot {
+        right: 80px;
+    }
+    
+    .chatbot.expanded {
+        width: calc(100% - 20px);
+        max-width: 300px;
+        height: 400px;
+        bottom: 80px;
+        right: 10px;
+    }
+}
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+        .chatbot {
+            bottom: 70px;
+            right: 10px;
+            width: calc(100% - 20px);
+            max-width: 300px;
+        }
+
+        .chat-header {
+            padding: 10px;
+        }
+
+        .chat-body {
+            height: 280px;
+        }
+
+        .message {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+
+        .chat-input {
+            padding: 6px;
+        }
+
+        .chat-input input {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .chat-input button {
+            width: 28px;
+            height: 28px;
+        }
+
+        .chat-input button i {
+            font-size: 12px;
+        }
+    }
+
+    /* Ensure chatbot doesn't conflict with floating contact buttons */
+    @media (max-width: 768px) {
+        .floating-contact {
+            bottom: 10px;
+        }
+    }
+
+    /* Add this to your existing <style> tag */
+    .chatbot {
+        position: fixed;
+        bottom: 140px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .chatbot-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+    .chat-icon i {
+        color: white;
+        font-size: 24px;
+    }
+
+    .chat-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .chat-window {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 350px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+    .chat-header {
+        background: var(--secondary-color);
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-header h3 {
+        margin: 0;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .minimize-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .chat-body {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        max-width: 80%;
+        word-wrap: break-word;
+        animation: messageSlide 0.3s ease;
+    }
+
+    @keyframes messageSlide {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .message.user {
+        background: #e3f2fd;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+    }
+
+    .message.bot {
+        background: #f5f5f5;
+        margin-right: auto;
+        border-bottom-left-radius: 5px;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 15px;
+        border-top: 1px solid #eee;
+        background: white;
+    }
+
+    .chat-input input {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .chat-input button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 35px; /* Reduced from 45px */
+        height: 35px; /* Reduced from 45px */
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+        background: #c1272d;
+    }
+
+    /* Enhanced Chatbot Styles */
+    .chatbot {
+        position: fixed;
+        bottom: 140px;
+        right: 20px;
+        width: 300px; /* Reduced from 380px */
+        background: #FFFFFF;
+        border-radius: 12px; /* Slightly reduced */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        transform: scale(0.9); /* Makes the entire chatbot 90% of its original size */
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, var(--secondary-color), #2c4a7c);
+        color: white;
+        padding: 12px 15px; /* Reduced padding */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-header h3 {
+        margin: 0;
+        font-size: 16px; /* Reduced font size */
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chat-header h3 i {
+        font-size: 20px;
+    }
+
+    .minimize-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.2s ease;
+    }
+
+    .minimize-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+
+    .chat-body {
+        height: 350px; /* Reduced from 450px */
+        display: flex;
+        flex-direction: column;
+        background: #f8f9fa;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        padding: 15px; /* Reduced padding */
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: #cfd8dc;
+        border-radius: 3px;
+    }
+
+    .message {
+        margin-bottom: 10px; /* Reduced margin */
+        padding: 8px 12px; /* Reduced padding */
+        border-radius: 15px;
+        max-width: 85%;
+        word-wrap: break-word;
+        position: relative;
+        animation: messageSlide 0.3s ease;
+        font-size: 13px; /* Reduced font size */
+        line-height: 1.5;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .message.user {
+        background: #e3f2fd;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+        color: #1565c0;
+    }
+
+    .message.bot {
+        background: white;
+        margin-right: auto;
+        border-bottom-left-radius: 5px;
+        color: #37474f;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 12px 15px; /* Reduced padding */
+        background: white;
+        border-top: 1px solid #eee;
+        gap: 10px;
+    }
+
+    .chat-input input {
+        flex-grow: 1;
+        padding: 8px 12px; /* Reduced padding */
+        border: 1px solid #e0e0e0;
+        border-radius: 25px;
+        font-size: 13px; /* Reduced font size */
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+    .chat-input input:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.1);
+    }
+
+    .chat-input button {
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 35px; /* Reduced from 45px */
+        height: 35px; /* Reduced from 45px */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat-input button:hover {
+        background: #2c4a7c;
+        transform: scale(1.05);
+    }
+
+    .chat-input button i {
+        font-size: 16px; /* Reduced from 18px */
+    }
+
+    @keyframes messageSlide {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Typing indicator animation */
+    .message.bot.typing::after {
+        content: '';
+        width: 30px;
+        height: 15px;
+        background: url("data:image/gif;base64,R0lGODlhHgASAPQAAP///wAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAHgASAAAFriAgjiQAQWVaDgr5POz6mZ4B4ZCqlS4wlC4k+XwCRkFIAWMBR4B1ECB4BiRgiAAhkFII0ChxUFSGQs7ukpMRU3/OkSDhTRggKB0RCi4PNiOO7+DMAIJwQ3OAFYLDBKAlBqQB5lKiMZAgwBfBDgMDNxQPb3xrO4wIF5hcGwAFRgIOqwkUEghDIiwWV1FdEQESCgzqEZEAACH5BAkKAAAALAAAAAAeABIAAAW7ICCOJGAYZZoOpKKQqDoORDMKwkgwtiwSBBYAJ2owFL4RgxAisSg4RRJEsBg3wQZDaZfAHASPRBJa7wQCfjEFCDGfCxo6v/Hic+A3EghgL3BQAAAAAA==") repeat-x;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    /* Add smooth transitions */
+    .chatbot, .chat-body, .message {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Toast Notification Styles */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-notification i {
+    font-size: 20px;
+}
+
+.toast-notification.error {
+    background: #f44336;
+}
+
+/* Enhanced Modal Styles */
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-content h2 {
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.checkbox-group {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.checkbox-label {
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.checkbox-label:hover {
+    background-color: rgba(230, 57, 70, 0.1);
+}
+
+/* Add these styles to your existing CSS */
+.chat-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: white;
+    margin: 0;
+}
+
+.chat-header h3 i {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Updated chatbot position and styling */
+.chatbot {
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    width: 300px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Updated header gradient */
+.chat-header {
+    background: linear-gradient(135deg, #1d3557, #457b9d);
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .chatbot {
+        width: calc(100% - 20px);
+        max-width: 300px;
+        bottom: 100px;
+    }
+
+    .chat-header h3 {
+        font-size: 13px;
+    }
+
+    .chat-header h3 i {
+        font-size: 16px;
+    }
+}
+
+/* Replace/update the chatbot styles */
+
+/* Chatbot Container as Icon Initially */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 90px; /* Position next to WhatsApp button */
+    width: 50px; /* Same as WhatsApp button */
+    height: 50px; /* Same as WhatsApp button */
+    border-radius: 50%;
+    background: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chatbot Icon */
+.chatbot-icon {
+    color: white;
+    font-size: 24px;
+}
+
+/* Expanded Chatbot Window */
+.chatbot.expanded {
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    bottom: 90px;
+    right: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chat Header */
+.chat-header {
+    padding: 12px 15px;
+    background: linear-gradient(135deg, var(--secondary-color), #457b9d);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .chatbot {
+        bottom: 20px;
+        right: 80px;
+    }
+    
+    .chatbot.expanded {
+        width: calc(100% - 20px);
+        max-width: 300px;
+        height: 400px;
+        bottom: 80px;
+        right: 10px;
+    }
+}
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/images/spruk.jpg" alt="Fire safety logo">
+        <div class="logo-text">
+          <h1>SPARKSHIELD ENTERPRISES</h1>
+          <span>Guarding Lives, Securing Futures</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li class="dropdown">
+            <a href="#services">Services</a>
+            <div class="dropdown-content">
+                <a href="/pages/hydrantsystem.html">Fire Hydrant System</a>
+                <a href="/pages/sprinklersystem.html">Fire Sprinkler System</a>
+                <a href="/pages/firealarmsystem.html">Fire Alarm System</a>
+                <a href="/pages/pasystem.html">PA System</a>
+                <a href="/pages/firesafetyproducts.html">Fire Safety Products</a>
+                <a href="/pages/amc.html">AMC of Fire Hydrant System</a>
+                
+            </div>
+          </li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="contact-info">
+        <div class="phone">Call Us: 9676145666</div>
+        <a href="#contact" class="btn">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <!-- Slides container -->
+    <div class="slide"
+      style="background-image: url('https://www.variex.in/wp-content/uploads/2020/07/How-Long-Does-A-Fire-Extinguisher-Work.jpg')">
+    </div>
+    <div class="slide"
+      style="background-image: url('/images/east-midlands.jpeg')">
+    </div>
+    <div class="slide"
+      style="background-image: url('/images/fire-fighting.jpg')">
+    </div>
+  
+    <!-- Static content -->
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your Complete Fire Safety Partner</h1>
+        <p>Protecting lives and property with comprehensive fire safety solutions for businesses, industries, and
+          institutions.</p>
+        <a href="#services" class="btn btn-large">Explore Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Fire Safety Services</h2>
+        <p>We provide a full range of fire protection solutions to keep your business safe</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://www.cws.com/sites/default/files/styles/photoswipe/public/2021-12/cws-fs-powder-fire-extinguisher-seeboth-feuerloscher-abc-2-int_0.jpg.webp?itok=0C9x5V63" alt="Fire Extinguishers">
+          </div>
+          <div class="service-content">
+            <h3>Fire Extinguishers</h3>
+            <p>Supply, installation, maintenance and testing of all types of fire extinguishers to meet safety
+              standards.</p>
+            <a href="fireextinguishers.html" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://suresafety.com/pub/media/wysiwyg/infortis/fire_hydrant_system.jpg" alt="Fire Hydrant System">
+          </div>
+          <div class="service-content">
+            <h3>Fire Hydrant System</h3>
+            <p>Installation and maintenance of fire hydrant systems to ensure efficient water access in the event of a fire.</p>
+            <a href="/pages/hydrantsystem.html" class="btn">Learn More</a>
+          </div>
+        </div>
+
+     
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://img1.wsimg.com/isteam/ip/3045a825-1b6e-4e20-aa0a-2bb4174a634d/sprinklersfinal.tif/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1209,h:850" alt="Sprinkler Systems">
+          </div>
+          <div class="service-content">
+            <h3>Sprinkler Systems</h3>
+            <p>Design, installation and maintenance of automatic sprinkler systems for reliable fire suppression.</p>
+            <a href="sprinklersystem.html" class="btn">Learn More</a>
+          </div>
+        </div>
+    
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://ohsonline.com/Articles/2007/12/-/media/OHS/OHS/Images/2007/12/fire_alarm_guide.jpg"
+              alt="Fire Alarm Systems">
+          </div>
+          <div class="service-content">
+            <h3>Fire Alarm Systems</h3>
+            <p>Advanced fire detection and alarm systems for early warning and protection of buildings and occupants.
+            </p>
+            <a href="/pages/firealarmsystem.html" class="btn">Learn More</a>
+          </div>
+        </div>
+
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/330109884/II/MD/QM/56314448/fire-safety-mock-drill-services-1000x1000.jpg" alt="Fire Safety Training">
+          </div>
+          <div class="service-content">
+            <h3>Fire Safety Mock Drills</h3>
+            <p>Expert training for your staff in fire prevention, emergency procedures and equipment operation.</p>
+            <a href="/pages/mockdrills.html" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About SparkShield Fire Protection</h2>
+                <p>Established in 2025, SparkShield is your trusted partner in commercial fire protection. We specialize in delivering advanced, compliant, and highly reliable fire safety solutions tailored for businesses of all sizes and sectors. Whether you manage a corporate office, retail space, industrial facility, or commercial complex, SparkShield is here to safeguard your people, property, and operations.</p>
+                <p>Our team of certified fire protection experts brings together decades of combined experience and a deep understanding of the unique safety requirements in commercial environments. We focus on customized strategies that minimize risk, ensure code compliance, and keep your business running without disruption.</p>
+                <p>With SparkShield, you gain more than a service provider—you gain a proactive safety partner. We are fully accredited and up to date with all national and local fire codes, giving you the confidence and peace of mind that your fire safety is in expert hands.</p>
+                <p><strong>Dependable. Responsive. Future-ready.</strong> SparkShield delivers commercial fire protection you can count on—today and tomorrow.</p>
+            </div>
+            <div class="about-img">
+                <img src="/images/about.jpg" 
+                     alt="About SparkShield"
+                     loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- CTA Section -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <h2>Ready to Enhance Your Fire Safety?</h2>
+      <p>Contact us today for a free consultation and quote. Our experts will assess your needs and provide tailored
+        solutions to keep your business safe.</p>
+      <a href="#" class="btn btn-light">Request a Quote</a>
+      <a href="tel:9573532827" class="btn btn-light">Call 9676145666</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SparkShield Fire Protection</h3>
+          <p>Your trusted partner in comprehensive fire safety solutions for businesses of all sizes.</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="/pages/fireextinguishers.html">Fire Extinguishers</a></li>
+            <li><a href="/pages/firealarmsystem.html">Fire Alarm Systems</a></li>
+            <li><a href="/pages/sprinklersystem.html">Sprinkler Systems</a></li>
+            <li><a href="/pages/hydrantsystem.html">Hydrant System</a></li>
+            <li><a href="/pages/mockdrills.html">Fire Safety Mock Drills</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section contact-info-footer">
+          <h3>Contact Us</h3>
+          <p>Near Ramavat Model School,Plot No-133 Subash Nagar IDA jeedimetla,Quthbullapur,Hyderabad</p>
+          <p>Phone: 9676145666</p>
+          <p>Email: Sparkshieldenterprise@gmail.com</p>
+          <p>GSTIN: 36AFPFS9674G1Z4</p>
+        </div>
+      </div>
+      
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 SparkShield Fire Protection. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// Define API_URL globally
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:80' 
+    : 'https://sparkshieldenterprises.xyz';
+
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dropdowns
+    initializeDropdowns();
+    // Start image slider
+    startSlider();
+    // Initialize chat
+    initializeChat();
+    // Initialize quote form
+    initializeQuoteForm();
+});
+
+function initializeDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        const content = dropdown.querySelector('.dropdown-content');
+        
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            content.classList.toggle('show');
+            
+            dropdowns.forEach(other => {
+                if (other !== dropdown) {
+                    other.querySelector('.dropdown-content').classList.remove('show');
+                }
+            });
+        });
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-content').forEach(content => {
+                content.classList.remove('show');
+            });
+        }
+    });
+}
+
+function startSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+
+    let currentSlide = 0;
+    slides[0].classList.add('active');
+    
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 3000);
+}
+
+function initializeChat() {
+    const chatForm = document.getElementById('chatForm');
+    const chatMessages = document.getElementById('chatMessages');
+    const minimizeBtn = document.querySelector('.minimize-btn');
+    const chatBody = document.querySelector('.chat-body');
+    
+    if (!chatForm || !chatMessages) return;
+
+    let isMinimized = false;
+
+    minimizeBtn?.addEventListener('click', () => {
+        isMinimized = !isMinimized;
+        if (chatBody) {
+            chatBody.style.display = isMinimized ? 'none' : 'flex';
+            minimizeBtn.textContent = isMinimized ? '+' : '−';
+        }
+    });
+
+    chatForm.addEventListener('submit', handleChatSubmit);
+}
+
+async function handleChatSubmit(e) {
+    e.preventDefault();
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    
+    if (!message) return;
+
+    addMessage('user', message);
+    userInput.value = '';
+    const typingIndicator = addMessage('bot', 'Typing...');
+
+    try {
+        const response = await fetch(`${API_URL}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        typingIndicator.remove();
+        addMessage('bot', data.response);
+    } catch (error) {
+        console.error('Error:', error);
+        typingIndicator.remove();
+        addMessage('bot', 'Sorry, I encountered an error. Please try again.');
+    }
+}
+
+function initializeQuoteForm() {
+    const quoteForm = document.getElementById('quoteForm');
+    const modal = document.getElementById('quoteModal');
+    const quoteButtons = document.querySelectorAll('a[href="#contact"], .btn-light[href="#"]');
+    const closeModal = document.querySelector('.close-modal');
+    
+    if (!quoteForm || !modal) return;
+
+    quoteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+    });
+
+    closeModal?.addEventListener('click', () => modal.classList.remove('show'));
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+
+    quoteForm.addEventListener('submit', handleQuoteSubmit);
+}
+
+async function handleQuoteSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const modal = document.getElementById('quoteModal');
+    
+    const selectedServices = Array.from(
+        document.querySelectorAll('input[name="services[]"]:checked')
+    ).map(cb => cb.value);
+    
+    if (selectedServices.length === 0) {
+        showToast('Please select at least one service', true);
+        return;
+    }
+
+    const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        services: selectedServices,
+        message: form.message.value
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/submit-quote`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            modal.classList.remove('show');
+            form.reset();
+            showToast('Quote request submitted successfully!');
+        } else {
+            throw new Error(data.error || 'Failed to submit quote');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showToast(error.message, true);
+    }
+}
+
+function addMessage(type, text) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = text;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return messageDiv;
+}
+
+function showToast(message, isError = false) {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    if (!toast || !toastMessage) return;
+    
+    const icon = toast.querySelector('i');
+    toastMessage.textContent = message;
+    
+    if (isError) {
+        toast.classList.add('error');
+        if (icon) icon.className = 'fas fa-exclamation-circle';
+    } else {
+        toast.classList.remove('error');
+        if (icon) icon.className = 'fas fa-check-circle';
+    }
+
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// Replace all chatbot initialization code with this single implementation
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.querySelector('.chatbot');
+    const chatContent = document.querySelector('.chat-content');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const minimizeBtn = document.querySelector('.minimize-btn');
+    const chatIcon = document.querySelector('.chatbot-icon');
+    
+    // Single source of truth for chatbot state
+    let isExpanded = false;
+
+    // Initialize chatbot state
+    function initializeChatbot() {
+        chatContent.style.display = 'none';
+        chatIcon.style.display = 'block';
+        chatbot.classList.remove('expanded');
+        isExpanded = false;
+    }
+
+    // Handle minimize button click
+    minimizeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        minimizeChatbot();
+    });
+
+    // Handle chatbot icon click
+    chatbot.addEventListener('click', function(e) {
+        if (e.target.closest('.minimize-btn')) {
+            return; // Let the minimize button handler take care of this
+        }
+        
+        if (!isExpanded && !e.target.closest('.chat-content')) {
+            expandChatbot();
+        }
+    });
+
+    // Prevent chat window from closing when clicking inside
+    chatContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Handle chat form submission
+    if (chatForm) {
+        chatForm.addEventListener('submit', handleChatSubmit);
+    }
+
+    function expandChatbot() {
+        isExpanded = true;
+        chatbot.classList.add('expanded');
+        chatContent.style.display = 'flex';
+        chatIcon.style.display = 'none';
+    }
+
+    function minimizeChatbot() {
+        isExpanded = false;
+        chatbot.classList.remove('expanded');
+        chatContent.style.display = 'none';
+        chatIcon.style.display = 'flex';
+    }
+
+    async function handleChatSubmit(e) {
+        e.preventDefault();
+        const userInput = document.getElementById('userInput');
+        const message = userInput.value.trim();
+        
+        if (!message) return;
+
+        addMessage('user', message);
+        userInput.value = '';
+        const typingIndicator = addMessage('bot', 'Typing...');
+
+        try {
+            const response = await fetch(`${API_URL}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            typingIndicator.remove();
+            addMessage('bot', data.response);
+        } catch (error) {
+            console.error('Error:', error);
+            typingIndicator.remove();
+            addMessage('bot', 'Sorry, I encountered an error. Please try again.');
+        }
+    }
+
+    function addMessage(type, text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageDiv;
+    }
+
+    // Initialize chatbot on load
+    initializeChatbot();
+});
+
+// Update the initialization function in your JavaScript
+function initializeChatUI() {
+    if (!isInitialized && chatMessages.children.length === 0) {
+        const welcomeMessage = document.createElement('div');
+        welcomeMessage.className = 'message bot';
+        welcomeMessage.textContent = "Hello! I'm your fire safety assistant. How can I help you today?";
+        chatMessages.appendChild(welcomeMessage);
+        isInitialized = true;
+    }
+}
+</script>
+
+  <!-- Add this before the closing </body> tag -->
+<div class="modal" id="quoteModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Request a Quote</h2>
+        <form class="quote-form" id="quoteForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <!-- Update the service selection form group in the quote modal -->
+            <div class="form-group">
+                <label>Services Required</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="fire_hydrant">
+                        Fire Hydrant System
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="sprinkler">
+                        Fire Sprinkler System
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="alarm">
+                        Fire Alarm System
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="pa">
+                        PA System
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="safety_products">
+                        Fire Safety Products
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="services[]" value="amc">
+                        AMC Services
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Additional Details</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Request</button>
+        </form>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast-notification" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Quote submitted successfully!</span>
+</div>
+
+<div class="contact-info">
+  <!-- WhatsApp Icon/Link -->
+  <a href="https://wa.me/919573532827" target="_blank" style="margin-right: 15px; color:green 
+   ;font-size: 20px;">
+    <i class="fab fa-whatsapp" class="whatsapp-icon"></i>
+  </a>
+
+  <!-- Phone Icon/Link -->
+  <a href="tel:9573532827" style="margin-right: 15px; color: var(--secondary-color); font-size: 20px;">
+    <i class="fas fa-phone"></i>
+  </a>
+
+  <!-- Phone Number Text -->
+  <div class="phone">Call Us: 9676145666</div>
+
+  <a href="#contact" class="btn">Get a Quote</a>
+</div>
+
+
+<!-- Floating Contact Buttons (Updated for Icons) -->
+<div class="floating-contact">
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919676145666" class="float-btn whatsapp-btn" target="_blank">
+    <span class="icon"></span> <!-- WhatsApp Unicode -->
+  </a>
+
+  <!-- Phone Button -->
+  <a href="tel:9676145666" class="float-btn phone-btn">
+    <span class="icon"></span> <!-- Phone Unicode -->
+  </a>
+</div>
+
+<!-- Chatbot Interface -->
+<div class="chatbot" id="chatbotIcon">
+    <div class="chatbot-icon">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="chat-content">
+        <div class="chat-header">
+            <h3><i class="fas fa-robot"></i> Chat with SparkShield</h3>
+            <button class="minimize-btn" aria-label="Minimize chat">−</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Remove the welcome message from here -->
+            </div>
+            <form id="chatForm" class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." required>
+                <button type="submit" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+  /* Floating Buttons Container */
+  .floating-contact {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Base Button Style */
+  .float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  /* WhatsApp Button */
+  .whatsapp-btn {
+    background: #25D366;
+    /* WhatsApp green */
+  }
+
+  /* Phone Button */
+  .phone-btn {
+    background: #2A5C99;
+    /* Phone blue */
+  }
+
+  /* Icon Font Fix */
+  .icon {
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", sans-serif;
+    font-weight: 900;
+  }
+
+  /* Hover Effects */
+  .float-btn:hover {
+    transform: scale(1.1);
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.querySelector('.chatbot');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const minimizeBtn = document.querySelector('.minimize-btn');
+    const chatBody = document.querySelector('.chat-body');
+    let isMinimized = false;
+
+    // Toggle chatbot
+    minimizeBtn.addEventListener('click', () => {
+        isMinimized = !isMinimized;
+        chatBody.style.display = isMinimized ? 'none' : 'flex';
+        minimizeBtn.textContent = isMinimized ? '+' : '−';
+    });
+
+    // Handle chat form submission
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userInput = document.getElementById('userInput');
+        const message = userInput.value.trim();
+        
+        if (!message) return;
+
+        // Add user message to chat
+        addMessage('user', message);
+        userInput.value = '';
+
+        // Show typing indicator
+        const typingIndicator = addMessage('bot', 'Typing...');
+
+        try {
+            const response = await fetch(`${API_URL}/chat`, { // Using API_URL instead of hardcoded port
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            typingIndicator.remove();
+
+            if (data.response) {
+                addMessage('bot', data.response);
+            } else {
+                throw new Error('Invalid response format');
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            typingIndicator.remove();
+            addMessage('bot', 'Sorry, I encountered an error. Please try again.');
+        }
+    });
+
+    // Function to add message to chat
+    function addMessage(type, text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageDiv;
+    }
+
+    // Add this to your existing script section
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatIcon = document.getElementById('chatIcon');
+        const chatWindow = document.querySelector('.chat-window');
+        const minimizeBtn = document.querySelector('.minimize-btn');
+        
+        // Toggle chat window when clicking the icon
+        chatIcon.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Close chat window when clicking the minimize button
+        minimizeBtn.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+
+        // Keep existing chat functionality...
+    });
+});
+
+// Add this to your existing script
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.querySelector('.chatbot');
+    const chatContent = document.querySelector('.chat-content');
+    const minimizeBtn = document.querySelector('.minimize-btn');
+
+    // Toggle chatbot
+    chatbot.addEventListener('click', function(e) {
+        if (e.target.closest('.minimize-btn')) {
+            chatbot.classList.remove('expanded');
+            chatContent.style.display = 'none';
+        } else if (!chatbot.classList.contains('expanded')) {
+            chatbot.classList.add('expanded');
+            chatContent.style.display = 'block';
+        }
+    });
+
+    // Prevent chat window from closing when clicking inside
+    chatContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+
+// Replace the existing chatbot initialization code with this:
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbot = document.querySelector('.chatbot');
+    const chatContent = document.querySelector('.chat-content');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const minimizeBtn = document.querySelector('.minimize-btn');
+    const chatIcon = document.querySelector('.chatbot-icon');
+    
+    // Initial state
+    let isExpanded = false;
+    let isInitialized = false;
+
+    function initializeChatUI() {
+        if (!isInitialized) {
+            // Add welcome message
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.className = 'message bot';
+            welcomeMessage.textContent = "Hello! I'm your fire safety assistant. How can I help you today?";
+            chatMessages.appendChild(welcomeMessage);
+            isInitialized = true;
+        }
+    }
+
+    function expandChatbot() {
+        isExpanded = true;
+        chatbot.classList.add('expanded');
+        chatContent.style.display = 'flex'; // Changed to flex
+        chatIcon.style.display = 'none';
+        initializeChatUI();
+        // Reset scroll position
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function minimizeChatbot() {
+        isExpanded = false;
+        chatbot.classList.remove('expanded');
+        chatContent.style.display = 'none';
+        chatIcon.style.display = 'flex';
+    }
+
+    // Handle chatbot container click
+    chatbot.addEventListener('click', function(e) {
+        if (e.target.closest('.minimize-btn')) {
+            e.preventDefault();
+            e.stopPropagation();
+            minimizeChatbot();
+        } else if (!isExpanded && !e.target.closest('.chat-content')) {
+            expandChatbot();
+        }
+    });
+
+    // Prevent chat window from closing when clicking inside
+    chatContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Handle chat form submission
+    if (chatForm) {
+        chatForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+
+            addMessage('user', message);
+            userInput.value = '';
+            const typingIndicator = addMessage('bot', 'Typing...');
+
+            try {
+                const response = await fetch(`${API_URL}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                typingIndicator.remove();
+                addMessage('bot', data.response);
+            } catch (error) {
+                console.error('Error:', error);
+                typingIndicator.remove();
+                addMessage('bot', 'Sorry, I encountered an error. Please try again.');
+            }
+        });
+    }
+
+    function addMessage(type, text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageDiv;
+    }
+
+    // Initialize chatbot state
+    minimizeChatbot();
+});
+</script>
+
+</body>
+
+</html>

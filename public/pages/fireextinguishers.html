@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Extinguishers | SafeGuard Fire Protection</title>
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --light-color: #f1faee;
+            --dark-color: #333;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .extinguisher-type {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .extinguisher-type h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .extinguisher-type ul {
+            list-style: none;
+            margin: 10px 0;
+            padding-left: 0;
+        }
+
+        .extinguisher-type li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .extinguisher-type li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 5px;
+            top: 0;
+        }
+
+        .extinguisher-type p {
+            text-align: left;
+            margin-bottom: 10px;
+            padding: 0 5px;
+        }
+
+        .maintenance-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .maintenance-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .maintenance-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 5px;
+            top: 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #c1272d;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .extinguisher-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .extinguisher-img:hover {
+            transform: scale(1.05);
+        }
+
+        .extinguisher-type p {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Fire Extinguishers</h1>
+            <p>Complete Fire Extinguisher Solutions for Your Safety</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content-section">
+            <h2>Our Fire Extinguisher Services</h2>
+            <p>At SafeGuard Fire Protection, we provide comprehensive fire extinguisher services to ensure your premises
+                are fully protected and compliant with safety regulations.</p>
+
+            
+            <div class="content-grid">
+                <div class="extinguisher-type">
+                    <img src="https://www.cws.com/sites/default/files/styles/photoswipe/public/2021-12/cws-fs-powder-fire-extinguisher-seeboth-feuerloscher-abc-2-int_0.jpg.webp?itok=0C9x5V63" alt="ABC Powder Type Fire Extinguisher" class="extinguisher-img">
+                    <h3>ABC Powder Type</h3>
+                    <p>Multi-purpose dry chemical powder extinguisher for:
+                        <ul>
+                            <li>Class A (Wood, Paper, Textile)</li>
+                            <li>Class B (Flammable Liquids)</li>
+                            <li>Class C (Electrical Fires)</li>
+                        </ul>
+                        Commonly used in offices, homes, and commercial spaces.
+                    </p>
+                </div>
+
+                <div class="extinguisher-type">
+                    <img src="https://petromartindia.in/wp-content/uploads/2022/07/abc-dry-powder-type-fire-extinguisher-500x500-1.jpg" alt="DCP Fire Extinguisher" class="extinguisher-img">
+                    <h3>DCP (Dry Chemical Powder)</h3>
+                    <p>Heavy-duty powder extinguisher for:
+                        <ul>
+                            <li>Industrial applications</li>
+                            <li>Chemical fires</li>
+                            <li>Metal fires (Class D)</li>
+                        </ul>
+                        Ideal for factories, workshops, and labs.
+                    </p>
+                </div>
+
+                <div class="extinguisher-type">
+                    <img src="https://www.americanfiresupply.com/sites/default/files/styles/8_columns/public/products/classk.jpg?itok=Y1E7mJJf" alt="K Type Fire Extinguisher" class="extinguisher-img">
+                    <h3>K Type</h3>
+                    <p>Wet Chemical extinguisher for:
+                        <ul>
+                            <li>Commercial kitchen fires</li>
+                            <li>Cooking oil and fat fires</li>
+                            <li>High-temperature equipment</li>
+                        </ul>
+                        Essential for restaurants and food facilities.
+                    </p>
+                </div>
+
+                <div class="extinguisher-type">
+                    <img src="https://breakfire.in/wp-content/uploads/2019/02/CO2-type-fire-extinguisher-4.5kg.jpg" alt="CO2 Fire Extinguisher" class="extinguisher-img">
+                    <h3>CO2 Type</h3>
+                    <p>Carbon dioxide extinguisher for:
+                        <ul>
+                            <li>Electrical equipment fires</li>
+                            <li>Server rooms and data centers</li>
+                            <li>Flammable liquid fires</li>
+                        </ul>
+                        Leaves no residue, perfect for sensitive equipment.
+                    </p>
+                </div>
+
+                <div class="extinguisher-type">
+                    <img src="https://lntsufin.com/storage/mediafiles/catalog/live/15843-3124/original/15843-3124_image_0.jpg" alt="Mechanical Foam Fire Extinguisher" class="extinguisher-img">
+                    <h3>Mechanical Foam Type</h3>
+                    <p>Specialized foam-based extinguisher for:
+                        <ul>
+                            <li>Flammable liquid fires (Class B)</li>
+                            <li>Oil and petroleum fires</li>
+                            <li>Paint and solvent fires</li>
+                        </ul>
+                        Ideal for fuel stations, paint shops, and oil storage areas.
+                    </p>
+                </div>
+
+                <div class="extinguisher-type">
+                    <img src="https://m.media-amazon.com/images/I/41AgnVNQn-L.jpg" alt="Water CO2 Fire Extinguisher" class="extinguisher-img">
+                    <h3>Water CO2 Type</h3>
+                    <p>Water-based pressurized extinguisher for:
+                        <ul>
+                            <li>Class A fires (Wood, Paper, Fabric)</li>
+                            <li>General purpose fire fighting</li>
+                            <li>Deep-seated fires</li>
+                        </ul>
+                        Perfect for warehouses, offices, and residential buildings.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Maintenance Services</h2>
+            <ul class="maintenance-list">
+                <li>Regular inspection and testing</li>
+                <li>Refilling and recharging</li>
+                <li>Pressure testing</li>
+                <li>Parts replacement</li>
+                <li>Certification and compliance checks</li>
+                <li>Staff training on proper usage</li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </main>
+</body>
+
+</html>

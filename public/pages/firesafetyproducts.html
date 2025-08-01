@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Safety Products | SafeGuard Fire Protection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --light-color: #f1faee;
+            --dark-color: #333;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .product-features li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #c1272d;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--secondary-color);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 8px 20px; /* Increased padding */
+            text-decoration: none;
+            border-radius: 5px; /* Increased border radius */
+            transition: all 0.3s ease;
+            font-size: 14px; /* Increased font size */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: flex-end;
+            margin: 30px 0; /* Increased margin */
+            clear: both;
+        }
+
+        .back-btn:hover {
+            background: #162955;
+            transform: translateY(-2px); /* Slightly larger lift effect */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Larger shadow on hover */
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Fire Safety Products</h1>
+            <p>Complete Range of High-Quality Fire Safety Equipment</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Our Product Range</h2>
+
+        <div class="products-grid">
+            <!-- Fire Extinguishers -->
+            <div class="product-card">
+                <img src="/images/Fire-extinguisher.webp"
+                    alt="Fire Extinguisher" class="product-image">
+                <div class="product-info">
+                    <h3>Fire Extinguishers</h3>
+                    <p>ABC Dry Chemical Fire Extinguisher</p>
+                    <ul class="product-features">
+                        <li>Suitable for Class A, B, and C fires</li>
+                        <li>10-pound capacity</li>
+                        <li>Includes mounting bracket</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Smoke Detectors -->
+            <div class="product-card">
+                <img src="/images/smoke.jpg"
+                    alt="Smoke Detector" class="product-image">
+                <div class="product-info">
+                    <h3>Smoke Detectors</h3>
+                    <p>Photoelectric Smoke Alarm</p>
+                    <ul class="product-features">
+                        <li>10-year battery life</li>
+                        <li>85dB alarm</li>
+                        <li>Easy installation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fire Blankets -->
+            <div class="product-card">
+                <img src="/images/fire-blanket.avif"
+                    alt="Fire Blanket" class="product-image">
+                <div class="product-info">
+                    <h3>Fire Blankets</h3>
+                    <p>Emergency Fire Suppression Blanket</p>
+                    <ul class="product-features">
+                        <li>1.2m x 1.2m size</li>
+                        <li>Quick release case</li>
+                        <li>Fiberglass material</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/images/Fire-Ball-Extinguisher.jpg" alt="Fire Blanket" class="product-image">
+                <div class="product-info">
+                    <h3>Fire Extinguisher Ball </h3>
+                    <p>Emergency Fire Extinguisher Ball</p>
+                    <ul class="product-features">
+                        <li>1.2m x 1.2m size</li>
+                        <li>Quick release case</li>
+                        <li>Fiberglass material</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/images/Fire-Sprinkler-System.jpg" alt="Fire Blanket" class="product-image">
+                <div class="product-info">
+                    <h3>Fire Sprinklers </h3>
+                    <p>Fire sprinklers</p>
+                    <ul class="product-features">
+                        <li>1.2m x 1.2m size</li>
+                        <li>Quick release case</li>
+                        <li>Fiberglass material</li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- Close products-grid -->
+        
+        <div style="width: 100%;">
+            <a href="index.html" class="back-btn">Back to Home</a>
+        </div>
+    </main>
+</body>
+
+</html>
