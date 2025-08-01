@@ -1,4 +1,4 @@
-🚒 SparkShield – Fire Safety Web App
+**🚒 SparkShield – Fire Safety Web App**
 SparkShield is a modern fire safety solutions platform that enables users to request quotes, manage Annual Maintenance Contracts (AMCs), and access instant fire safety advice through an AI-powered chatbot. Designed with both functionality and scalability in mind, SparkShield helps streamline fire safety management for individuals and organizations.
 
 ✨ Key Features
